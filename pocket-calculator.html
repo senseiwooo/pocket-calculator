@@ -2,83 +2,149 @@
   <html>
     <head>
       <link rel="stylesheet" type="text/css" href="pocket-calculator.css">
+      <script type="text/javascript" src="pocket-calculator.js"></script>
       <title>Pocket Calulcator</title>
     </head>
 
     <body>
-      <div class="grid-container">
+      <table class="calculator">
+        <tr>
+          <th height="75" colspan=4>
+            &nbsp;
+          </th>
+        </tr>
 
-        <div class="grid-item-1">
-          <button onclick="button1()"> 1 </button>
-        </div>
+        <tr>
+          <td>
+            <div class="table-item-18">
+              <button onclick="clear()"> AC </button>
+            </div>
+          </td>
 
-        <div class="grid-item-2">
-          <button onclick="button2()"> 2 </button>
-        </div>
+          <td>
+            <div class="table-item-17">
+              <button onclick="negate()"> +/- </button>
+            </div>
+          </td>
 
-        <div class="grid-item-3">
-          <button onclick="button3()"> 3 </button>
-        </div>
+          <td>
+            <div class="table-item-16">
+              <button onclick="percent()"> % </button>
+            </div>
+          </td>
 
-        <div class="grid-item-4">
-          <button onclick="button4()"> 4 </button>
-        </div>
+          <td>
+            <div class="table-item-11">
+              <button onclick="divide()"> / </button>
+            </div>
+          </td>
+        </tr>
 
-        <div class="grid-item-5">
-          <button onclick="button5()"> 5 </button>
-        </div>
+        <tr>
+          <td>
+            <div class="table-item-7">
+              <button onclick="button7()"> 7 </button>
+            </div>
+          </td>
 
-        <div class="grid-item-6">
-          <button onclick="button6()"> 6 </button>
-        </div>
+          <td>
+            <div class="table-item-8">
+              <button onclick="button8()"> 8 </button>
+            </div>
+          </td>
 
-        <div class="grid-item-7">
-          <button onclick="button7()"> 7 </button>
-        </div>
+          <td>
+            <div class="table-item-9">
+              <button onclick="button9()"> 9 </button>
+            </div>
+          </td>
 
-        <div class="grid-item-8">
-          <button onclick="button8()"> 8 </button>
-        </div>
+          <td>
+            <div class="table-item-12">
+              <button onclick="multiply()"> * </button>
+            </div>
+          </td>
+        </tr>
 
-        <div class="grid-item-9">
-          <button onclick="button9()"> 9 </button>
-        </div>
+        <tr>
+          <td>
+            <div class="table-item-4">
+              <button onclick="button4()"> 4 </button>
+            </div>
+          </td>
 
-        <div class="grid-item-10">
-          <button onclick="button10()"> . </button>
-        </div>
+          <td>
+            <div class="table-item-5">
+              <button onclick="button5()"> 5 </button>
+            </div>
+          </td>
 
-        <div class="grid-item-11">
-          <button onclick="button11()"> / </button>
-        </div>
+          <td>
+            <div class="table-item-6">
+              <button onclick="button6()"> 6 </button>
+            </div>
+          </td>
 
-        <div class="grid-item-12">
-          <button onclick="button12()"> * </button>
-        </div>
+          <td>
+            <div class="table-item-13">
+              <button onclick="subtraction()"> - </button>
+            </div>
+          </td>
+        </tr>
 
-        <div class="grid-item-13">
-          <button onclick="button13()"> - </button>
-        </div>
+        <tr>
+          <td>
+            <div class="table-item-1">
+              <button onclick="button1()"> 1 </button>
+            </div>
+          </td>
 
-        <div class="grid-item-14">
-          <button onclick="button14()"> + </button>
-        </div>
+          <td>
+            <div class="table-item-2">
+              <button onclick="button2()"> 2 </button>
+            </div>
+          </td>
 
-        <div class="grid-item-15">
-          <button onclick="button15()"> = </button>
-        </div>
+          <td>
+            <div class="table-item-3">
+              <button onclick="button3()"> 3 </button>
+            </div>
+          </td>
 
-        <div class="grid-item-16">
-          <button onclick="button16()"> % </button>
-        </div>
+          <td>
+            <div class="table-item-14">
+              <button onclick="add()"> + </button>
+            </div>
+          </td>
+        </tr>
 
-        <div class="grid-item-17">
-          <button onclick="button17()"> +/- </button>
-        </div>
+        <tr>
+          <td colspan="2" align="center">
+            <div class="table-item-19">
+              <button class="button0" onclick="button0()"> 0 </button>
+            </div>
+          </td>
 
-        <div class="grid-item-18">
-          <button onclick="button18()"> AC </button>
-        </div>
+          <td>
+            <div class="table-item-10">
+              <button onclick="decimal()"> . </button>
+            </div>
+          </td>
+
+          <td>
+            <div class="table-item-15">
+              <button onclick="equal()"> = </button>
+            </div>
+          </td>
+
+          <td>
+          </td>
+
+        </tr>
+
+      </table>
+
+
 
     </div>
 

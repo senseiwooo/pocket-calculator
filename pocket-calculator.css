@@ -1,12 +1,17 @@
-.grid-container {
-  display: grid;
-  grid-template-rows: repeat(4, 100px);
-  grid-template-columns: repeat(3, 1);
-  grid-gap: 10px;
-  grid-column-gap: 0px;
+table {
+  border: 1px solid black;
+}
+
+th {
+  border: 1px solid black;
 }
 
 button {
   height: 100px;
   width: 100px;
+}
+
+.button0 {
+  width: 200px;
+  align: left;
 }
