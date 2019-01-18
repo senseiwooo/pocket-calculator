@@ -92,35 +92,38 @@ do {
   }
 
   function clear() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").innerHTML = "";
-    answer = document.getElementById("result").innerHTML;
+    expression.length = 0;
+    console.log(expression);
+    document.getElementByid("result").textContent = 0;
   }
 
   function negate() {
     answer = document.getElementById("result").innerHTML;
-    answer = eval(answer) * -1;
+
     if ((Number.isNaN(answer)) || (answer === "Infinity" || (answer === "/0") || (answer[1,2] === "**") || (answer[1,2] === "++") || (answer[1,2] === "--"))){
       document.getElementById("result").innerHTML = "Invalid operation";
     }
 
     else {
-      document.getElementById("result").innerHTML = eval(answer);
+      expression.push("*-1");
+      var finalExpression = expression.join('');
+      var finalAnswer = eval(finalExpression);
+      document.getElementById("result").innerHTML = finalAnswer;
     }
   }
 
   function percent() {
     answer = document.getElementById("result").innerHTML;
-    answer = eval(answer);
-    answer = answer / 100;
 
     if ((Number.isNaN(answer)) || (answer === "Infinity" || (answer === "/0") || (answer[1,2] === "**") || (answer[1,2] === "++") || (answer[1,2] === "--"))){
       document.getElementById("result").innerHTML = "Sorry, that is not a valid operation";
     }
 
     else {
-      document.getElementById("result").innerHTML = eval(answer);
+      expression.push("/100");
+      var finalExpression = expression.join('');
+      var finalAnswer = eval(finalExpression);
+      document.getElementById("result").innerHTML = finalAnswer;
     }
   }
 
