@@ -4,7 +4,6 @@ var firstPercent = false;
 var symbolStatus = false;
 var i = 7;
 var operationInserted = false;
-var final = false;
 var exponential;
 var numberNegate = false;
 var decimalStatus = false;
@@ -12,7 +11,6 @@ var decimalInserted = false;
 
 function insert(num) {
   var p = document.getElementById("result");
-  var length = Number(p.innerHTML.length);
   if (executed == false) {
     p.innerHTML = "";
     executed = true;
@@ -24,11 +22,32 @@ function insert(num) {
       expression.push(num);
       operationInserted = true;
     }
+    p.innerHTML = num;
+    document.getElementsByClassName("numberButton")[0].disabled = false;
+    document.getElementsByClassName("numberButton")[1].disabled = false;
+    document.getElementsByClassName("numberButton")[2].disabled = false;
+    document.getElementsByClassName("numberButton")[3].disabled = false;
+    document.getElementsByClassName("numberButton")[4].disabled = false;
+    document.getElementsByClassName("numberButton")[5].disabled = false;
+    document.getElementsByClassName("numberButton")[6].disabled = false;
+    document.getElementsByClassName("numberButton")[7].disabled = false;
+    document.getElementsByClassName("numberButton")[8].disabled = false;
+    document.getElementsByClassName("numberButton")[9].disabled = false;
+    document.getElementsByClassName("button0")[0].disabled = false;
   }
 
-  if (Number(p.innerHTML) > 999999999 || Number(p.innerHTML) < -999999999) {
-    console.log(Number(p.innerHTML));
-    p.innerHTML = Number(p.innerHTML).toExponential(9);
+  if (Number(p.innerHTML.length > 10)) {
+    document.getElementsByClassName("numberButton")[0].disabled = true;
+    document.getElementsByClassName("numberButton")[1].disabled = true;
+    document.getElementsByClassName("numberButton")[2].disabled = true;
+    document.getElementsByClassName("numberButton")[3].disabled = true;
+    document.getElementsByClassName("numberButton")[4].disabled = true;
+    document.getElementsByClassName("numberButton")[5].disabled = true;
+    document.getElementsByClassName("numberButton")[6].disabled = true;
+    document.getElementsByClassName("numberButton")[7].disabled = true;
+    document.getElementsByClassName("numberButton")[8].disabled = true;
+    document.getElementsByClassName("numberButton")[9].disabled = true;
+    document.getElementsByClassName("button0")[0].disabled = true;
   }
 
   if (operationInserted == false) {
@@ -48,12 +67,21 @@ function ac() {
   i -= 7;
   expression = [];
   operationInserted = false;
-  final = false;
   executed = false;
   decimalStatus = false;
   decimalInserted = false;
   numberNegate = false;
-  document.getElementsByClassName("button").disabled = false;
+  document.getElementsByClassName("numberButton")[0].disabled = false;
+  document.getElementsByClassName("numberButton")[1].disabled = false;
+  document.getElementsByClassName("numberButton")[2].disabled = false;
+  document.getElementsByClassName("numberButton")[3].disabled = false;
+  document.getElementsByClassName("numberButton")[4].disabled = false;
+  document.getElementsByClassName("numberButton")[5].disabled = false;
+  document.getElementsByClassName("numberButton")[6].disabled = false;
+  document.getElementsByClassName("numberButton")[7].disabled = false;
+  document.getElementsByClassName("numberButton")[8].disabled = false;
+  document.getElementsByClassName("numberButton")[9].disabled = false;
+  document.getElementsByClassName("button0")[0].disabled = false;
 }
 
 function pressOp(num) {
@@ -68,7 +96,17 @@ function pressOp(num) {
   decimalInserted = false;
   numberNegate = true;
 
-  document.getElementsByClassName("button").disabled = false;
+  document.getElementsByClassName("numberButton")[0].disabled = false;
+  document.getElementsByClassName("numberButton")[1].disabled = false;
+  document.getElementsByClassName("numberButton")[2].disabled = false;
+  document.getElementsByClassName("numberButton")[3].disabled = false;
+  document.getElementsByClassName("numberButton")[4].disabled = false;
+  document.getElementsByClassName("numberButton")[5].disabled = false;
+  document.getElementsByClassName("numberButton")[6].disabled = false;
+  document.getElementsByClassName("numberButton")[7].disabled = false;
+  document.getElementsByClassName("numberButton")[8].disabled = false;
+  document.getElementsByClassName("numberButton")[9].disabled = false;
+  document.getElementsByClassName("button0")[0].disabled = false;
 }
 
 function negate() {
@@ -80,20 +118,30 @@ function negate() {
 
   decimalInserted = true;
   decimalStatus = true;
-  document.getElementsByClassName("button").disabled = false;
+
+  document.getElementsByClassName("numberButton")[0].disabled = false;
+  document.getElementsByClassName("numberButton")[1].disabled = false;
+  document.getElementsByClassName("numberButton")[2].disabled = false;
+  document.getElementsByClassName("numberButton")[3].disabled = false;
+  document.getElementsByClassName("numberButton")[4].disabled = false;
+  document.getElementsByClassName("numberButton")[5].disabled = false;
+  document.getElementsByClassName("numberButton")[6].disabled = false;
+  document.getElementsByClassName("numberButton")[7].disabled = false;
+  document.getElementsByClassName("numberButton")[8].disabled = false;
+  document.getElementsByClassName("numberButton")[9].disabled = false;
+  document.getElementsByClassName("button0")[0].disabled = false;
 }
 
 function percent() {
   var p = document.getElementById("result");
   p.innerHTML = p.innerHTML.split(",").join("");
-  var percentNum = Number(p.innerHTML) / 100;
-  expression = [percentNum];
-  p.innerHTML = percentNum;
-
-  if (p.innerHTML>= 0.9999999) {
-    let expon= Number(p.innerHTML);
-    p.innerHTML = expon.toExponential(9);
+  var percentNum = (p.innerHTML * .01);
+  if (percentNum.length > 10) {
+    percentNum = (percentNum).toFixed(9);
+    percentNum.toExponential(9);
   }
+  expression = [percentNum];
+  p.innerHTML = percentNum
 }
 
 function decimal(num) {
@@ -109,7 +157,6 @@ function decimal(num) {
 
 function equals() {
   var p = document.getElementById("result");
-  final = true;
   symbolStatus = false;
   firstPercent = false;
   document.getElementsByClassName("button").disabled = false;
