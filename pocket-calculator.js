@@ -1,177 +1,177 @@
-var answer;
-var expression = [];
-var done = false;
+var executed = false;
+var expression= [];
+var firstPercent = false;
+var symbolStatus = false;
+var i = 7;
+var operationInserted = false;
+var final = false;
+var exponential;
+var numberNegate = false;
+var decimalStatus = false;
+var decimalInserted = false;
 
-do {
-
-  function button0() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += "0";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("0");
+function insert(num) {
+  var p = document.getElementById("result");
+  if (executed == false) {
+    p.innerHTML = "";
+    executed = true;
   }
 
-  function button1() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += "1";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("1");
-  }
-
-  function button2() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += "2";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("2");
-  }
-
-  function button3() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += "3";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("3");
-  }
-
-  function button4() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += "4";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("4");
-  }
-
-  function button5() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += "5";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("5");
-  }
-
-  function button6() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += "6";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("6");
-  }
-
-  function button7() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += "7";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("7");
-  }
-
-  function button8() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += "8";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("8");
-  }
-
-  function button9() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += "9";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("9");
-  }
-
-  function decimal() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += ".";
-    answer = document.getElementById("result").innerHTML;
-  }
-
-  function clear() {
-    expression.length = 0;
-    console.log(expression);
-    document.getElementByid("result").textContent = 0;
-  }
-
-  function negate() {
-    answer = document.getElementById("result").innerHTML;
-
-    if ((Number.isNaN(answer)) || (answer === "Infinity" || (answer === "/0") || (answer[1,2] === "**") || (answer[1,2] === "++") || (answer[1,2] === "--"))){
-      document.getElementById("result").innerHTML = "Invalid operation";
+  if (num === '*' || num === '/' || num === '+'|| num === '-') {
+    if (expression[expression.length - 1] == '+' || expression[expression.length - 1] == '-' || expression[expression.length -1] == '*' || expression[expression.length - 1] == '/') {
+      expression.pop();
+      expression.push(num);
+      operationInserted = true;
     }
+    p.innerHTML = p.innerHTML + num; 
+  }
 
+  if (operationInserted == false) {
+    p.innerHTML = p.innerHTML + num;
+    expression.push(num);
+  }
+
+  if (Number(p.innerHTML.length) <= 10) {
+    p.innerHTML = p.innerHTML;
+  }
+
+  else {
+    document.getElementsByClassName("button").disabled = false;
+  }
+
+  if (decimalInserted == false) {
+    let commaInput = Number(p.innerHTML.split(",").join("")).toLocaleString();
+    p.innerHTML = commaInput;
+  }
+}
+
+function clear() {
+  var p = document.getElementById("result");
+  final = false;
+  operationInserted = false;
+  p.innerHTML=0;
+  i = i = 7;
+  executed = false;
+  decimalStatus = false;
+  decimalInserted = false;
+  numberNegate = false;
+  expression = [];
+
+  document.getElementsByClassName("button").disabled = false;
+}
+
+function pressOp() {
+  var p = document.getElementById("result");
+  operationInserted = false;
+   i = i = 7;
+  symbolStatus = false;
+  firstPercent = false;
+  p.innerHTML= 0;
+  executed = false;
+  decimalStatus = false;
+  decimalInserted = false;
+  numberNegate = true;
+
+  document.getElementsByClassName("button").disabled = false;
+}
+
+function equals() {
+  var p = document.getElementById("result");
+  symbolStatus = false;
+  firstPercent = false;
+  final = true;
+
+  document.getElementsByClassName("button").disabled = false;
+
+  let calcAnswer= eval(expression.join(''));
+  if (expression.join(",").includes("e")){
+     exponential = true;
+  }
+
+    expression = [];
+    expression.push(calcAnswer);
+
+  if(calcAnswer > 999999999 || calcAnswer < -999999999){
+    p.innerHTML = calcAnswer.toExponential(9);
+  }
+
+  else {
+    p.innerHTML=calcAnswer.toLocaleString("en");
+  }
+  if (exponential == true) {
+    p.innerHTML = calcAnswer;
+  }
+
+  if(p.innerHTML === "Infinity" || p.innerHTML === "NaN" || p.innerHTML === "∞") {
+    p.innerHTML = "ERROR";
+  }
+}
+
+function negate() {
+  var p = document.getElementById("result");
+  p.innerHTML = Number(p.innerHTML) * -1;
+  p.innerHTML = Number(p.innerHTML).toLocaleString("en");
+  p.innerHTML = "" + p.innerHTML + "";
+
+  let negNum = expression * -1;
+  expression[expression.length-1] = (String(expression[expression.length-1]));
+  expression.unshift("-");
+
+  decimalInserted = true;
+  decimalStatus = true;
+  document.getElementsByClassName("button").disabled = false;
+}
+
+function percent() {
+  var p = document.getElementById("result");
+  p.innerHTML = p.innerHTML.split(",").join("");
+  if(final == false) {
+
+    if(firstPercent == false) {
+      let numberCount = p.innerHTML.length;
+      numberCount = numberCount -1;
+      let removed = expression.length - numberCount;
+
+      while(expression.length >= removed) {
+        expression.pop();
+      }
+
+      p.innerHTML = Number(p.innerHTML) / 100;
+      expression[removed] = p.innerHTML;
+
+      firstPercent = true;
+    }
     else {
-      expression.push("*-1");
-      var finalExpression = expression.join('');
-      var finalAnswer = eval(finalExpression);
-      document.getElementById("result").innerHTML = finalAnswer;
+      let numberCount2 = p.innerHTML.length;
+      numberCount2 = numberCount2 - i;
+      let amountToBeRemoved2 = expression.length - numberCount2;
+      expression.splice(expression.length -1);
+      p.innerHTML = p.innerHTML / 100;
+      expression.push(p.innerHTML);
+      if(p.innerHTML>= 0.9999999){
+        let expon= Number(p.innerHTML);
+        p.innerHTML = expon.toExponential(9);
+      }
     }
   }
-
-  function percent() {
-    answer = document.getElementById("result").innerHTML;
-
-    if ((Number.isNaN(answer)) || (answer === "Infinity" || (answer === "/0") || (answer[1,2] === "**") || (answer[1,2] === "++") || (answer[1,2] === "--"))){
-      document.getElementById("result").innerHTML = "Sorry, that is not a valid operation";
-    }
-
-    else {
-      expression.push("/100");
-      var finalExpression = expression.join('');
-      var finalAnswer = eval(finalExpression);
-      document.getElementById("result").innerHTML = finalAnswer;
+  else {
+    p.innerHTML = p.innerHTML / 100;
+    expression = [];
+    expression.push(p.innerHTML);
+    let expon= Number(p.innerHTML);
+    if(p.innerHTML>= 0.9999999) {
+      p.innerHTML = expon.toExponential(9);
     }
   }
+}
 
-  function divide() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += " / ";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("/");
+function decimal(num) {
+  var p = document.getElementById("result");
+  if(decimalStatus == false){
+    p.innerHTML = p.innerHTML + num;
+    expression.push(num);
+    decimalStatus = true;
+    decimalInserted = true;
+    document.getElementById("decimal").disabled = true;
   }
-
-  function multiply() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += " * ";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("*");
-  }
-
-  function subtract() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += " - ";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("-");
-  }
-
-  function add() {
-    answer = document.getElementById("result").innerHTML;
-    answer = answer.toString();
-    document.getElementById("result").textContent += " + ";
-    answer = document.getElementById("result").innerHTML;
-    expression.push("+");
-  }
-
-  function equal() {
-    var finalExpression = expression.join('');
-    console.log(finalExpression);
-    var finalAnswer = eval(finalExpression);
-    console.log(finalAnswer);
-    if ((Number.isNaN(finalAnswer)) || (finalAnswer == null) || (finalAnswer == undefined) || (finalAnswer === "Infinity" || (finalAnswer === "/0") || (finalAnswer === "**") || (finalAnswer === "++") || (finalAnswer === "--"))){
-      document.getElementById("result").innerHTML = "Invalid operation. Rip."
-    }
-
-    else {
-      document.getElementById("result").innerHTML = finalAnswer;
-      done = true;
-    }
-  }
-
-} while (done = false);
+}
